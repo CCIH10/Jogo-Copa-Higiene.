@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Copa da Higiene - CCIH</title>
     <style>
+        /* ESTILO COM O CAMPO E OS BONECOS GRANDES */
         * {
             margin: 0;
             padding: 0;
@@ -13,379 +14,270 @@
         }
 
         body {
-            background-color: #1a5e2e;
-            color: white;
+            background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 70%, #228B22 70%, #228B22 100%);
+            height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            overflow: hidden;
         }
-
-        h1 {
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            text-align: center;
-        }
-
-        .tempo {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            background: rgba(0,0,0,0.3);
-            padding: 5px 20px;
-            border-radius: 20px;
-        }
-
-        .placar {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            max-width: 600px;
-            font-size: 2em;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .time-azul { color: #007bff; }
-        .time-vermelho { color: #dc3545; }
 
         .campo {
             width: 100%;
-            max-width: 800px;
-            height: 400px;
-            background-color: #2e8b57;
-            border: 5px solid white;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .linha-meio {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 4px;
             height: 100%;
-            background-color: white;
+            position: relative;
+            background-image: 
+                linear-gradient(to right, transparent 48%, #fff 48%, #fff 52%, transparent 52%),
+                radial-gradient(circle, transparent 60%, #fff 60%, #fff 62%, transparent 62%);
+            border: 5px solid #fff;
         }
 
-        .circulo-meio {
+        /* JOGADOR BONECO GRANDE */
+        .jogador {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
-            border: 4px solid white;
-            border-radius: 50%;
+            bottom: 15%;
+            left: 15%;
+            width: 120px;
+            height: 180px;
+            transition: transform 0.2s;
         }
-
-        .area-gol-esq, .area-gol-dir {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 80px;
-            height: 160px;
-            border: 4px solid white;
+        .jogador.chutando {
+            transform: rotate(-10deg);
         }
-
-        .area-gol-esq { left: 0; border-left: none; }
-        .area-gol-dir { right: 0; border-right: none; }
-
-        .bola {
-            position: absolute;
+        .cabeca {
             width: 40px;
             height: 40px;
-            background-color: white;
+            background: #FFD700; /* camisa amarela Brasil */
             border-radius: 50%;
+            margin: 0 auto;
+            border: 3px solid #000;
+        }
+        .corpo {
+            width: 50px;
+            height: 60px;
+            background: #FFD700;
+            margin: 0 auto;
+            border: 3px solid #000;
+            border-top: none;
+        }
+        .braco {
+            width: 15px;
+            height: 50px;
+            background: #009933;
+            position: absolute;
+            top: 45px;
+        }
+        .braco.esq { left: 10px; transform: rotate(-30deg); }
+        .braco.dir { right: 10px; transform: rotate(30deg); }
+        .perna {
+            width: 18px;
+            height: 60px;
+            background: #000;
+            position: absolute;
+            bottom: 0;
+        }
+        .perna.esq { left: 15px; }
+        .perna.dir { right: 15px; }
+
+        /* GOLEIRO */
+        .goleiro {
+            position: absolute;
+            bottom: 25%;
+            right: 20%;
+            width: 80px;
+            height: 100px;
+        }
+        .goleiro .corpo { background: #fff; }
+
+        /* TRAVE */
+        .trave {
+            position: absolute;
+            bottom: 25%;
+            right: 10%;
+            width: 150px;
+            height: 100px;
+            border: 8px solid #fff;
+            border-bottom: none;
+        }
+        .trave:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 8px;
+            height: 100%;
+            background: #fff;
+        }
+
+        /* BOLA */
+        .bola {
+            position: absolute;
+            bottom: 40%;
+            left: 30%;
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            border: 2px solid #000;
+            display: none;
+            z-index: 10;
+        }
+        .bola.chute {
+            animation: irParaGol 1s forwards;
+        }
+
+        @keyframes irParaGol {
+            0% { bottom: 40%; left: 30%; }
+            100% { bottom: 50%; right: 15%; }
+        }
+
+        /* PLACAR E TEXTO */
+        .info {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+            z-index: 20;
+        }
+        .placar {
+            display: flex;
+            justify-content: space-around;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .pergunta {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            margin: 10px auto;
+            width: 80%;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        .botoes {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 20;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            background: #009933;
+            color: white;
+            cursor: pointer;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+        }
+        button:hover { background: #00cc44; }
+
+        .gol-animacao {
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: all 0.8s ease;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            z-index: 10;
-        }
-
-        .goleiro {
-            position: absolute;
-            width: 50px;
-            height: 80px;
-            background-color: #ffc107;
-            border-radius: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 5;
-        }
-
-        .goleiro-esq { left: 20px; }
-        .goleiro-dir { right: 20px; }
-
-        .pergunta-box {
-            background-color: rgba(255,255,255,0.9);
-            color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 700px;
-            text-align: center;
-        }
-
-        .pergunta {
-            font-size: 1.2em;
-            margin-bottom: 20px;
+            font-size: 80px;
             font-weight: bold;
-        }
-
-        .opcoes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .opcao {
-            padding: 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .opcao:hover {
-            background-color: #0056b3;
-        }
-
-        .resultado {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-top: 15px;
+            color: yellow;
+            text-shadow: 5px 5px 10px black;
             display: none;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 30;
+            animation: piscar 0.5s infinite;
         }
 
-        .gol { color: #28a745; }
-        .defesa { color: #dc3545; }
-
-        .controles {
-            margin-top: 20px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-
-        .btn-iniciar { background-color: #28a745; color: white; }
-        .btn-proxima { background-color: #ffc107; color: #333; display: none; }
-
-        /* ESTILO DA TELA DE CADASTRO */
-        .tela-cadastro {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            padding: 20px;
-        }
-
-        .cadastro-box {
-            background: white;
-            color: #333;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        .cadastro-box input {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-        }
-
-        .botoes-time {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .btn-azul { background: #007bff; color: white; flex: 1;}
-        .btn-vermelho { background: #dc3545; color: white; flex: 1;}
-
-        .lista-jogadores {
-            display: flex;
-            width: 100%;
-            max-width: 700px;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            background: rgba(0,0,0,0.2);
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .lista {
-            text-align: left;
+        @keyframes piscar {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TELA DE ENTRADA E CADASTRO -->
-    <div class="tela-cadastro" id="telaCadastro">
-        <div class="cadastro-box">
-            <h2>⚽ BEM-VINDO! 🧼</h2>
-            <p>Digite seu nome e escolha seu time:</p>
-            <input type="text" id="nomeJogador" placeholder="Seu nome completo" maxlength="20">
-            <div class="botoes-time">
-                <button class="btn-azul" onclick="entrarTime('azul')">🔵 TIME AZUL</button>
-                <button class="btn-vermelho" onclick="entrarTime('vermelho')">🔴 TIME VERMELHO</button>
-            </div>
-            <button class="btn-iniciar" onclick="iniciarPartida()" style="margin-top: 20px;">▶️ INICIAR PARTIDA</button>
+<div class="campo">
+    <!-- ANIMAÇÃO DO GOL -->
+    <div class="gol-animacao" id="golTexto">GOOOOOLL!!!</div>
+
+    <!-- CAMPO E JOGADORES -->
+    <div class="jogador" id="jogador">
+        <div class="cabeca"></div>
+        <div class="corpo"></div>
+        <div class="braco esq"></div>
+        <div class="braco dir"></div>
+        <div class="perna esq"></div>
+        <div class="perna dir"></div>
+    </div>
+
+    <div class="goleiro">
+        <div class="cabeca"></div>
+        <div class="corpo" style="background: #fff;"></div>
+        <div class="braco esq"></div>
+        <div class="braco dir"></div>
+    </div>
+
+    <div class="trave"></div>
+    <div class="bola" id="bola"></div>
+
+    <!-- PARTE DO JOGO -->
+    <div class="info">
+        <h1>⚽ COPA DA HIGIENE - CCIH 🧼</h1>
+        <div class="placar">
+            <div>🔵 AZUL: <span id="pontosAzul">0</span></div>
+            <div>⏱️ <span id="timer">00:00</span></div>
+            <div>🔴 VERMELHO: <span id="pontosVermel">0</span></div>
         </div>
+        <div class="pergunta" id="perguntaTexto">Clique em "Sortear" para começar!</div>
     </div>
 
-    <h1>⚽ COPA DA HIGIENE - CCIH 🧼</h1>
-
-    <div class="tempo" id="tempo">00:00</div>
-
-    <div class="placar">
-        <div class="time-azul">TIME AZUL: <span id="placar-azul">0</span></div>
-        <div class="time-vermelho">TIME VERMELHO: <span id="placar-vermelho">0</span></div>
+    <div class="botoes">
+        <button id="btnSortear">🎲 SORTEAR PERGUNTA</button>
+        <button id="btnGol">⚽ MARCAR GOL!</button>
     </div>
+</div>
 
-    <!-- LISTA DE QUEM ESTÁ EM CADA TIME -->
-    <div class="lista-jogadores">
-        <div class="lista time-azul">
-            <strong>Jogadores Azul:</strong><br>
-            <span id="lista-azul">-</span>
-        </div>
-        <div class="lista time-vermelho">
-            <strong>Jogadores Vermelho:</strong><br>
-            <span id="lista-vermelho">-</span>
-        </div>
-    </div>
+<script>
+    // EFEITO DO CHUTE E GOL
+    const jogador = document.getElementById('jogador');
+    const bola = document.getElementById('bola');
+    const golTexto = document.getElementById('golTexto');
+    const btnGol = document.getElementById('btnGol');
 
-    <div class="campo">
-        <div class="linha-meio"></div>
-        <div class="circulo-meio"></div>
-        <div class="area-gol-esq"></div>
-        <div class="area-gol-dir"></div>
-        <div class="goleiro goleiro-esq" id="goleiro-esq"></div>
-        <div class="goleiro goleiro-dir" id="goleiro-dir"></div>
-        <div class="bola" id="bola"></div>
-    </div>
+    btnGol.addEventListener('click', () => {
+        // Jogador chuta
+        jogador.classList.add('chutando');
+        
+        // Bola sai
+        bola.style.display = 'block';
+        bola.classList.remove('chute');
+        void bola.offsetWidth; // Reinicia animação
+        bola.classList.add('chute');
 
-    <div class="pergunta-box">
-        <div class="pergunta" id="pergunta">Aguardando início...</div>
-        <div class="opcoes" id="opcoes"></div>
-        <div class="resultado" id="resultado"></div>
-    </div>
+        // Mostra GOL depois de 1 segundo
+        setTimeout(() => {
+            golTexto.style.display = 'block';
+            setTimeout(() => {
+                golTexto.style.display = 'none';
+            }, 2000);
+        }, 800);
 
-    <div class="controles">
-        <button class="btn-proxima" id="btn-proxima" onclick="proximaPergunta()">Próxima Pergunta</button>
-    </div>
+        // Volta ao normal
+        setTimeout(() => {
+            jogador.classList.remove('chutando');
+            bola.style.display = 'none';
+        }, 1500);
+    });
 
-    <script>
-        const perguntas = [
-            {
-                pergunta: "Segundo a OMS, quantos são os momentos indicados para a higiene das mãos na assistência à saúde?",
-                opcoes: ["3 momentos", "5 momentos", "7 momentos", "10 momentos"],
-                respostaCorreta: 1
-            },
-            {
-                pergunta: "Em qual situação o uso de água e sabão é OBRIGATÓRIO em vez de preparação alcoólica?",
-                opcoes: ["Antes de tocar o paciente", "Quando as mãos estão visivelmente sujas ou com matéria orgânica", "Depois de tocar o entorno do paciente", "Antes de realizar técnica asséptica"],
-                respostaCorreta: 1
-            },
-            {
-                pergunta: "O uso de luvas substitui a necessidade de higienizar as mãos?",
-                opcoes: ["Sim, pois as luvas são impermeáveis", "Não, deve-se higienizar antes de calçar e depois de remover as luvas", "Somente se as luvas forem estéreis", "Não, mas só é necessário depois de remover"],
-                respostaCorreta: 1
-            },
-            {
-                pergunta: "Qual é o tempo mínimo recomendado para a fricção com preparação alcoólica?",
-                opcoes: ["5 a 10 segundos", "10 a 15 segundos", "20 a 30 segundos", "1 minuto completo"],
-                respostaCorreta: 2
-            },
-            {
-                pergunta: "Quais áreas das mãos são frequentemente negligenciadas durante a higienização?",
-                opcoes: ["Apenas as palmas", "Polegares, pontas dos dedos e espaços interdigitais", "Apenas os punhos", "Nenhuma das alternativas"],
-                respostaCorreta: 1
-            },
-            {
-                pergunta: "A higiene das mãos é eficaz na redução de qual tipo de infecção?",
-                opcoes: ["Infecções relacionadas à assistência à saúde (IRAS)", "Apenas doenças virais", "Apenas doenças bacterianas", "Não tem impacto significativo"],
-                respostaCorreta: 0
-            },
-            {
-                pergunta: "Quando devemos realizar a higiene das mãos ao cuidar do mesmo paciente?",
-                opcoes: ["Apenas uma vez por turno", "Antes de tocar o paciente e depois de tocar fluidos corporais", "Só depois do contato", "Nunca, se usar luva sempre"],
-                respostaCorreta: 1
-            },
-            {
-                pergunta: "Qual a concentração alcoólica recomendada para eficácia antimicrobiana?",
-                opcoes: ["30% a 40%", "50% a 60%", "60% a 80%", "90% a 95%"],
-                respostaCorreta: 2
-            }
-        ];
+    // --- AQUI VAI O RESTO DO SEU CÓDIGO DO JOGO ---
+    // (Perguntas, placar, tempo, etc)
+</script>
 
-        let placarAzul = 0;
-        let placarVermelho = 0;
-        let perguntaAtual = 0;
-        let jogoIniciado = false;
-        let tempoDecorrido = 0;
-        let cronometro;
-
-        // LISTAS DE JOGADORES
-        let jogadoresAzul = [];
-        let jogadoresVermelho = [];
-
-        const bola = document.getElementById('bola');
-        const resultado = document.getElementById('resultado');
-        const btnProxima = document.getElementById('btn-proxima');
-        const opcoesDiv = document.getElementById('opcoes');
-        const perguntaDiv = document.getElementById('pergunta');
-        const tempoDisplay = document.getElementById('tempo');
-
-        // FUNÇÕES DE SOM
-        function tocarSomApito() {
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.value = 800;
-                oscillator.type = 'sine';
-                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-                
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + 0.3);
-            } catch(e) {}
-        }
-
-        function tocarSomGolBrasil() {
-            // Efeito sonoro: GOL GOL GOL
-            const utterance = new SpeechSynthesisUtterance("Gooooooooooool do Brasil!
-  
+</body>
+</html>
