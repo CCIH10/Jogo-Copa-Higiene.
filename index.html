@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa da Higiene - CCIH</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a5e2e;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .tempo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: rgba(0,0,0,0.3);
+            padding: 5px 20px;
+            border-radius: 20px;
+        }
+
+        .placar {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .time-azul { color: #007bff; }
+        .time-vermelho { color: #dc3545; }
+
+        .campo {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background-color: #2e8b57;
+            border: 5px solid white;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .linha-meio {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background-color: white;
+        }
+
+        .circulo-meio {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 4px solid white;
+            border-radius: 50%;
+        }
+
+        .area-gol-esq, .area-gol-dir {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 160px;
+            border: 4px solid white;
+        }
+
+        .area-gol-esq { left: 0; border-left: none; }
+        .area-gol-dir { right: 0; border-right: none; }
+
+        .bola {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.8s ease;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .goleiro {
+            position: absolute;
+            width: 50px;
+            height: 80px;
+            background-color: #ffc107;
+            border-radius: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+        }
+
+        .goleiro-esq { left: 20px; }
+        .goleiro-dir { right: 20px; }
+
+        .pergunta-box {
+            background-color: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .pergunta {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .opcoes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .opcao {
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .opcao:hover {
+            background-color: #0056b3;
+        }
+
+        .resultado {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-top: 15px;
+            display: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .gol { color: #28a745; }
+        .defesa { color: #dc3545; }
+
+        .controles {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .btn-iniciar { background-color: #28a745; color: white; }
+        .btn-proxima { background-color: #ffc107; color: #333; display: none; }
+
+        /* ESTILO DA TELA DE CADASTRO */
+        .tela-cadastro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .cadastro-box {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .cadastro-box input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .botoes-time {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-azul { background: #007bff; color: white; flex: 1;}
+        .btn-vermelho { background: #dc3545; color: white; flex: 1;}
+
+        .lista-jogadores {
+            display: flex;
+            width: 100%;
+            max-width: 700px;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .lista {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TELA DE ENTRADA E CADASTRO -->
+    <div class="tela-cadastro" id="telaCadastro">
+        <div class="cadastro-box">
+            <h2>⚽ BEM-VINDO! 🧼</h2>
+            <p>Digite seu nome e escolha seu time:</p>
+            <input type="text" id="nomeJogador" placeholder="Seu nome completo" maxlength="20">
+            <div class="botoes-time">
+                <button class="btn-azul" onclick="entrarTime('azul')">🔵 TIME AZUL</button>
+                <button class="btn-vermelho" onclick="entrarTime('vermelho')">🔴 TIME VERMELHO</button>
+            </div>
+            <button class="btn-iniciar" onclick="iniciarPartida()" style="margin-top: 20px;">▶️ INICIAR PARTIDA</button>
+        </div>
+    </div>
+
+    <h1>⚽ COPA DA HIGIENE - CCIH 🧼</h1>
+
+    <div class="tempo" id="tempo">00:00</div>
+
+    <div class="placar">
+        <div class="time-azul">TIME AZUL: <span id="placar-azul">0</span></div>
+        <div class="time-vermelho">TIME VERMELHO: <span id="placar-vermelho">0</span></div>
+    </div>
+
+    <!-- LISTA DE QUEM ESTÁ EM CADA TIME -->
+    <div class="lista-jogadores">
+        <div class="lista time-azul">
+            <strong>Jogadores Azul:</strong><br>
+            <span id="lista-azul">-</span>
+        </div>
+        <div class="lista time-vermelho">
+            <strong>Jogadores Vermelho:</strong><br>
+            <span id="lista-vermelho">-</span>
+        </div>
+    </div>
+
+    <div class="campo">
+        <div class="linha-meio"></div>
+        <div class="circulo-meio"></div>
+        <div class="area-gol-esq"></div>
+        <div class="area-gol-dir"></div>
+        <div class="goleiro goleiro-esq" id="goleiro-esq"></div>
+        <div class="goleiro goleiro-dir" id="goleiro-dir"></div>
+        <div class="bola" id="bola"></div>
+    </div>
+
+    <div class="pergunta-box">
+        <div class="pergunta" id="pergunta">Aguardando início...</div>
+        <div class="opcoes" id="opcoes"></div>
+        <div class="resultado" id="resultado"></div>
+    </div>
+
+    <div class="controles">
+        <button class="btn-proxima" id="btn-proxima" onclick="proximaPergunta()">Próxima Pergunta</button>
+    </div>
+
+    <script>
+        const perguntas = [
+            {
+                pergunta: "Segundo a OMS, quantos são os momentos indicados para a higiene das mãos na assistência à saúde?",
+                opcoes: ["3 momentos", "5 momentos", "7 momentos", "10 momentos"],
+                respostaCorreta: 1
+            },
+            {
+                pergunta: "Em qual situação o uso de água e sabão é OBRIGATÓRIO em vez de preparação alcoólica?",
+                opcoes: ["Antes de tocar o paciente", "Quando as mãos estão visivelmente sujas ou com matéria orgânica", "Depois de tocar o entorno do paciente", "Antes de realizar técnica asséptica"],
+                respostaCorreta: 1
+            },
+            {
+                pergunta: "O uso de luvas substitui a necessidade de higienizar as mãos?",
+                opcoes: ["Sim, pois as luvas são impermeáveis", "Não, deve-se higienizar antes de calçar e depois de remover as luvas", "Somente se as luvas forem estéreis", "Não, mas só é necessário depois de remover"],
+                respostaCorreta: 1
+            },
+            {
+                pergunta: "Qual é o tempo mínimo recomendado para a fricção com preparação alcoólica?",
+                opcoes: ["5 a 10 segundos", "10 a 15 segundos", "20 a 30 segundos", "1 minuto completo"],
+                respostaCorreta: 2
+            },
+            {
+                pergunta: "Quais áreas das mãos são frequentemente negligenciadas durante a higienização?",
+                opcoes: ["Apenas as palmas", "Polegares, pontas dos dedos e espaços interdigitais", "Apenas os punhos", "Nenhuma das alternativas"],
+                respostaCorreta: 1
+            },
+            {
+                pergunta: "A higiene das mãos é eficaz na redução de qual tipo de infecção?",
+                opcoes: ["Infecções relacionadas à assistência à saúde (IRAS)", "Apenas doenças virais", "Apenas doenças bacterianas", "Não tem impacto significativo"],
+                respostaCorreta: 0
+            },
+            {
+                pergunta: "Quando devemos realizar a higiene das mãos ao cuidar do mesmo paciente?",
+                opcoes: ["Apenas uma vez por turno", "Antes de tocar o paciente e depois de tocar fluidos corporais", "Só depois do contato", "Nunca, se usar luva sempre"],
+                respostaCorreta: 1
+            },
+            {
+                pergunta: "Qual a concentração alcoólica recomendada para eficácia antimicrobiana?",
+                opcoes: ["30% a 40%", "50% a 60%", "60% a 80%", "90% a 95%"],
+                respostaCorreta: 2
+            }
+        ];
+
+        let placarAzul = 0;
+        let placarVermelho = 0;
+        let perguntaAtual = 0;
+        let jogoIniciado = false;
+        let tempoDecorrido = 0;
+        let cronometro;
+
+        // LISTAS DE JOGADORES
+        let jogadoresAzul = [];
+        let jogadoresVermelho = [];
+
+        const bola = document.getElementById('bola');
+        const resultado = document.getElementById('resultado');
+        const btnProxima = document.getElementById('btn-proxima');
+        const opcoesDiv = document.getElementById('opcoes');
+        const perguntaDiv = document.getElementById('pergunta');
+        const tempoDisplay = document.getElementById('tempo');
+
+        // FUNÇÕES DE SOM
+        function tocarSomApito() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch(e) {}
+        }
+
+        function tocarSomGolBrasil() {
+            // Efeito sonoro: GOL GOL GOL
+            const utterance = new SpeechSynthesisUtterance("Gooooooooooool do Brasil!
+  
