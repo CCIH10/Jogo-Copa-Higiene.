@@ -330,13 +330,11 @@
 <body>
 
 <div class="campo">
-    <!-- DESENHO DO CAMPO -->
     <div class="linha-meio"></div>
     <div class="circulo-meio"></div>
     <div class="area esq"></div>
     <div class="area dir"></div>
 
-    <!-- ELEMENTOS DO JOGO -->
     <div class="gol-texto" id="golTexto">GOOOOLL!!!</div>
 
     <div class="jogador" id="jogador">
@@ -358,7 +356,6 @@
     <div class="trave"></div>
     <div class="bola" id="bola"></div>
 
-    <!-- PAINEL DE CONTROLE -->
     <div class="painel">
         <h1>⚽ COPA DA HIGIENE - CCIH 🧼</h1>
         <div class="placar">
@@ -372,13 +369,10 @@
         <h2 id="textoPergunta">Clique em "Sortear" para começar!</h2>
     </div>
 
-    <div class="botoes-resposta" id="botoesResposta">
-        <!-- Botoes aparecem aqui -->
-    </div>
+    <div class="botoes-resposta" id="botoesResposta"></div>
 
     <button class="btn-acao" id="btnSortear">🎲 SORTEAR PERGUNTA</button>
 
-    <!-- TELA INICIAL -->
     <div class="tela-inicial" id="telaInicial">
         <h2>⚽ BEM-VINDO! 🧼</h2>
         <p>Digite seu nome e escolha seu time:</p>
@@ -404,7 +398,6 @@
 </div>
 
 <script>
-    // --- LISTA DE PERGUNTAS COMPLETAS ---
     const perguntas = [
         {
             pergunta: "Qual a forma correta de higienizar as mãos?",
@@ -434,8 +427,4 @@
         {
             pergunta: "Qual a finalidade da higienização das mãos?",
             opcoes: ["Deixar as mãos cheirosas", "Apenas para limpar sujeira visível", "Prevenir infecções e eliminar microrganismos", "Não tem finalidade importante"],
-            correta: 2
-        },
-        {
-            pergunta: "O
-    
+           
