@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="pt-BR"><!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,6 @@
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
         }
-
         body {
             background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 50%, #228B22 50%, #228B22 100%);
             height: 100vh;
@@ -20,8 +20,6 @@
             align-items: center;
             overflow: hidden;
         }
-
-        /* CAMPO DE FUTEBOL */
         .campo {
             width: 95%;
             max-width: 800px;
@@ -30,70 +28,53 @@
             position: relative;
             border: 8px solid #fff;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            overflow: hidden;
         }
-
         .linha-meio {
             position: absolute;
-            top: 0;
-            left: 50%;
-            width: 5px;
-            height: 100%;
+            top: 0; left: 50%;
+            width: 5px; height: 100%;
             background: #fff;
         }
         .circulo-meio {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
+            top: 50%; left: 50%;
+            width: 100px; height: 100px;
             border: 5px solid #fff;
             border-radius: 50%;
             transform: translate(-50%, -50%);
         }
         .area {
             position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 150px;
-            height: 200px;
+            bottom: 0; right: 0;
+            width: 150px; height: 200px;
             border: 5px solid #fff;
             border-bottom: none;
         }
         .area.esq { left: 0; transform: scaleX(-1); }
-
-        /* JOGADOR BONECO GRANDE */
         .jogador {
             position: absolute;
-            bottom: 20%;
-            left: 25%;
-            width: 100px;
-            height: 140px;
+            bottom: 20%; left: 25%;
+            width: 100px; height: 140px;
             z-index: 10;
             transition: transform 0.2s;
         }
-        .jogador.chutando {
-            transform: rotate(-15deg);
-        }
+        .jogador.chutando { transform: rotate(-15deg); }
         .cabeca {
-            width: 35px;
-            height: 35px;
+            width: 35px; height: 35px;
             background: #FFD700;
             border-radius: 50%;
             margin: 0 auto;
             border: 2px solid #000;
         }
         .corpo {
-            width: 45px;
-            height: 50px;
+            width: 45px; height: 50px;
             background: #FFD700;
             margin: 0 auto;
             border: 2px solid #000;
             border-top: none;
         }
         .braco {
-            width: 12px;
-            height: 40px;
+            width: 12px; height: 40px;
             background: #009933;
             position: absolute;
             top: 40px;
@@ -102,8 +83,7 @@
         .braco.esq { left: 15px; transform: rotate(-20deg); }
         .braco.dir { right: 15px; transform: rotate(20deg); }
         .perna {
-            width: 15px;
-            height: 45px;
+            width: 15px; height: 45px;
             background: #000;
             position: absolute;
             bottom: 0;
@@ -111,43 +91,30 @@
         }
         .perna.esq { left: 20px; }
         .perna.dir { right: 20px; }
-
-        /* GOLEIRO E TRAVE */
         .goleiro {
             position: absolute;
-            bottom: 35%;
-            right: 22%;
-            width: 70px;
-            height: 90px;
+            bottom: 35%; right: 22%;
+            width: 70px; height: 90px;
         }
         .goleiro .corpo { background: #fff; }
-
         .trave {
             position: absolute;
-            bottom: 35%;
-            right: 12%;
-            width: 120px;
-            height: 80px;
+            bottom: 35%; right: 12%;
+            width: 120px; height: 80px;
             border: 6px solid #fff;
             border-bottom: none;
         }
         .trave:after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 50%;
-            width: 6px;
-            height: 100%;
+            top: 0; left: 50%;
+            width: 6px; height: 100%;
             background: #fff;
         }
-
-        /* BOLA */
         .bola {
             position: absolute;
-            bottom: 38%;
-            left: 35%;
-            width: 25px;
-            height: 25px;
+            bottom: 38%; left: 35%;
+            width: 25px; height: 25px;
             background: #fff;
             border-radius: 50%;
             border: 2px solid #000;
@@ -157,17 +124,13 @@
         .bola.voando {
             animation: voar 1s forwards;
         }
-
         @keyframes voar {
             0% { bottom: 38%; left: 35%; }
             100% { bottom: 55%; right: 20%; }
         }
-
-        /* TEXTO GOL */
         .gol-texto {
             position: absolute;
-            top: 40%;
-            left: 50%;
+            top: 40%; left: 50%;
             transform: translate(-50%, -50%);
             font-size: 70px;
             font-weight: bold;
@@ -181,12 +144,9 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-
-        /* PAINEL DO JOGO */
         .painel {
             position: absolute;
-            top: 10px;
-            left: 0;
+            top: 10px; left: 0;
             width: 100%;
             z-index: 20;
             text-align: center;
@@ -205,11 +165,9 @@
             font-weight: bold;
             text-shadow: 2px 2px 2px #000;
         }
-
         .caixa-pergunta {
             position: absolute;
-            top: 100px;
-            left: 50%;
+            top: 100px; left: 50%;
             transform: translateX(-50%);
             background: rgba(0,0,0,0.8);
             color: white;
@@ -221,8 +179,7 @@
         }
         .botoes-resposta {
             position: absolute;
-            bottom: 80px;
-            left: 0;
+            bottom: 80px; left: 0;
             width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -242,11 +199,9 @@
         }
         .botao.correta { background: green; }
         .botao.errada { background: red; }
-
         .btn-acao {
             position: absolute;
-            bottom: 20px;
-            left: 50%;
+            bottom: 20px; left: 50%;
             transform: translateX(-50%);
             padding: 15px 40px;
             font-size: 20px;
@@ -257,14 +212,10 @@
             cursor: pointer;
             z-index: 20;
         }
-
-        /* TELA INICIAL */
         .tela-inicial {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0,0,0,0.9);
             z-index: 100;
             display: flex;
@@ -319,6 +270,7 @@
             background: yellow;
             color: black;
             animation: pulsar 1s infinite;
+            cursor: pointer;
         }
         @keyframes pulsar {
             0% { transform: scale(1); }
@@ -328,15 +280,12 @@
     </style>
 </head>
 <body>
-
 <div class="campo">
     <div class="linha-meio"></div>
     <div class="circulo-meio"></div>
     <div class="area esq"></div>
     <div class="area dir"></div>
-
     <div class="gol-texto" id="golTexto">GOOOOLL!!!</div>
-
     <div class="jogador" id="jogador">
         <div class="cabeca"></div>
         <div class="corpo"></div>
@@ -345,17 +294,14 @@
         <div class="perna esq"></div>
         <div class="perna dir"></div>
     </div>
-
     <div class="goleiro">
         <div class="cabeca"></div>
         <div class="corpo" style="background: #fff;"></div>
         <div class="braco esq"></div>
         <div class="braco dir"></div>
     </div>
-
     <div class="trave"></div>
     <div class="bola" id="bola"></div>
-
     <div class="painel">
         <h1>⚽ COPA DA HIGIENE - CCIH 🧼</h1>
         <div class="placar">
@@ -364,26 +310,19 @@
             <div>🔴 VERMELHO: <span id="ptsVerm">0</span></div>
         </div>
     </div>
-
     <div class="caixa-pergunta" id="caixaPergunta">
         <h2 id="textoPergunta">Clique em "Sortear" para começar!</h2>
     </div>
-
     <div class="botoes-resposta" id="botoesResposta"></div>
-
     <button class="btn-acao" id="btnSortear">🎲 SORTEAR PERGUNTA</button>
-
     <div class="tela-inicial" id="telaInicial">
         <h2>⚽ BEM-VINDO! 🧼</h2>
         <p>Digite seu nome e escolha seu time:</p>
-        
         <input type="text" id="inputNome" class="input-nome" placeholder="Seu nome aqui..." maxlength="15">
-        
         <div class="times">
             <button class="btn-time azul" id="btnAzul">🔵 TIME AZUL</button>
             <button class="btn-time vermelho" id="btnVermelho">🔴 TIME VERMELHO</button>
         </div>
-
         <div class="lista">
             <strong>🔵 Jogadores Azul:</strong>
             <p id="listaAzul">-</p>
@@ -392,39 +331,388 @@
             <strong>🔴 Jogadores Vermelho:</strong>
             <p id="listaVermelho">-</p>
         </div>
-
         <button class="btn-iniciar" id="btnIniciar" disabled>⏳ AGUARDANDO...</button>
     </div>
 </div>
 
 <script>
-    const perguntas = [
-        {
-            pergunta: "Qual a forma correta de higienizar as mãos?",
-            opcoes: ["Apenas água", "Água e sabão ou álcool em gel", "Apenas papel toalha", "Não precisa lavar"],
-            correta: 1
-        },
-        {
-            pergunta: "Quanto tempo dura a higienização correta das mãos?",
-            opcoes: ["20 a 30 segundos", "Apenas 5 segundos", "5 minutos", "10 segundos"],
-            correta: 0
-        },
-        {
-            pergunta: "O que NÃO se deve fazer em ambiente hospitalar?",
-            opcoes: ["Usar jaleco", "Andar com chinelo", "Usar crachá", "Higienizar mãos"],
-            correta: 1
-        },
-        {
-            pergunta: "Qual a principal via de transmissão de infecções?",
-            opcoes: ["Pelo ar apenas", "Pelos objetos apenas", "Pelas mãos e contato", "Pela água da torneira"],
-            correta: 2
-        },
-        {
-            pergunta: "Quando devemos higienizar as mãos?",
-            opcoes: ["Apenas antes de comer", "Antes e após contato com paciente", "Apenas quando estiverem sujas", "Nunca"],
-            correta: 1
-        },
-        {
-            pergunta: "Qual a finalidade da higienização das mãos?",
-            opcoes: ["Deixar as mãos cheirosas", "Apenas para limpar sujeira visível", "Prevenir infecções e eliminar microrganismos", "Não tem finalidade importante"],
-           
+const perguntas = [
+    { pergunta: "Qual a forma correta de higienizar as mãos?", opcoes: ["Apenas água", "Água e sabão ou álcool em gel", "Apenas papel toalha", "Não precisa lavar"], correta: 1 },
+    { pergunta: "Quanto tempo dura a higienização correta das mãos?", opcoes: ["20 a 30 segundos", "Apenas 5 segundos", "5 minutos", "10 segundos"], correta: 0 },
+    { pergunta: "O que NÃO se deve fazer em ambiente hospitalar?", opcoes: ["Usar jaleco", "Andar com chinelo", "Usar crachá", "Higienizar mãos"], correta: 1 },
+    { pergunta: "Qual a principal via de transmissão de infecções?", opcoes: ["Pelo ar apenas", "Pelos objetos apenas", "Pelas mãos e contato", "Pela água da torneira"], correta: 2 },
+    { pergunta: "Quando devemos higienizar as mãos?", opcoes: ["Apenas antes de comer", "Antes e após contato com paciente", "Apenas quando estiverem sujas", "Nunca"], correta: 1 },
+    { pergunta: "Qual a finalidade da higienização das mãos?", opcoes: ["Deixar as mãos cheirosas", "Apenas para limpar sujeira visível", "Prevenir infecções e eliminar microrganismos", "Não tem finalidade importante"], correta: 2 },
+    { pergunta: "O álcool em gel é eficaz contra qual destes?", opcoes: ["Apenas sujeira grossa", "Bactérias e vírus", "Apenas gordura", "Nada"], correta: 1 },
+    { pergunta: "O que é o 'Cinco Momentos' da higienização?", opcoes: ["Os 5 horários do dia", "Os 5 tipos de sabão", "Os momentos certinhos para higienizar", "Os 5 minutos de lavagem"], correta: 2 }
+];
+
+let jogadoresAzul = [];
+let jogadoresVermelho = [];
+let placarAzul = 0;
+let placarVermelho = 0;
+let perguntaAtual;
+let respondido = false;
+
+const btnAzul = document.getElementById('btnAzul');
+const btnVermelho = document.getElementById('btnVermelho');
+const btnIniciar = document.getElementById('btnIniciar');
+const btnSortear = document.getElementById('btnSortear');
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa da Higiene - CCIH</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 50%, #228B22 50%, #228B22 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .campo {
+            width: 95%;
+            max-width: 800px;
+            height: 95vh;
+            background: #228B22;
+            position: relative;
+            border: 8px solid #fff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .linha-meio {
+            position: absolute;
+            top: 0; left: 50%;
+            width: 5px; height: 100%;
+            background: #fff;
+        }
+        .circulo-meio {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 100px; height: 100px;
+            border: 5px solid #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .area {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 150px; height: 200px;
+            border: 5px solid #fff;
+            border-bottom: none;
+        }
+        .area.esq { left: 0; transform: scaleX(-1); }
+        .jogador {
+            position: absolute;
+            bottom: 20%; left: 25%;
+            width: 100px; height: 140px;
+            z-index: 10;
+            transition: transform 0.2s;
+        }
+        .jogador.chutando { transform: rotate(-15deg); }
+        .cabeca {
+            width: 35px; height: 35px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 2px solid #000;
+        }
+        .corpo {
+            width: 45px; height: 50px;
+            background: #FFD700;
+            margin: 0 auto;
+            border: 2px solid #000;
+            border-top: none;
+        }
+        .braco {
+            width: 12px; height: 40px;
+            background: #009933;
+            position: absolute;
+            top: 40px;
+            border: 2px solid #000;
+        }
+        .braco.esq { left: 15px; transform: rotate(-20deg); }
+        .braco.dir { right: 15px; transform: rotate(20deg); }
+        .perna {
+            width: 15px; height: 45px;
+            background: #000;
+            position: absolute;
+            bottom: 0;
+            border: 2px solid #000;
+        }
+        .perna.esq { left: 20px; }
+        .perna.dir { right: 20px; }
+        .goleiro {
+            position: absolute;
+            bottom: 35%; right: 22%;
+            width: 70px; height: 90px;
+        }
+        .goleiro .corpo { background: #fff; }
+        .trave {
+            position: absolute;
+            bottom: 35%; right: 12%;
+            width: 120px; height: 80px;
+            border: 6px solid #fff;
+            border-bottom: none;
+        }
+        .trave:after {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            width: 6px; height: 100%;
+            background: #fff;
+        }
+        .bola {
+            position: absolute;
+            bottom: 38%; left: 35%;
+            width: 25px; height: 25px;
+            background: #fff;
+            border-radius: 50%;
+            border: 2px solid #000;
+            display: none;
+            z-index: 15;
+        }
+        .bola.voando {
+            animation: voar 1s forwards;
+        }
+        @keyframes voar {
+            0% { bottom: 38%; left: 35%; }
+            100% { bottom: 55%; right: 20%; }
+        }
+        .gol-texto {
+            position: absolute;
+            top: 40%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 70px;
+            font-weight: bold;
+            color: yellow;
+            text-shadow: 4px 4px 0px blue, -4px -4px 0px blue, 4px -4px 0px blue, -4px 4px 0px blue;
+            display: none;
+            z-index: 50;
+            animation: piscar 0.3s infinite;
+        }
+        @keyframes piscar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .painel {
+            position: absolute;
+            top: 10px; left: 0;
+            width: 100%;
+            z-index: 20;
+            text-align: center;
+        }
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        .placar {
+            display: flex;
+            justify-content: space-around;
+            font-size: 18px;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px #000;
+        }
+        .caixa-pergunta {
+            position: absolute;
+            top: 100px; left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            width: 85%;
+            border: 3px solid #FFD700;
+            z-index: 20;
+        }
+        .botoes-resposta {
+            position: absolute;
+            bottom: 80px; left: 0;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 20px;
+            z-index: 20;
+        }
+        .botao {
+            padding: 12px;
+            font-size: 16px;
+            background: #0044cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            border: 2px solid #fff;
+            cursor: pointer;
+        }
+        .botao.correta { background: green; }
+        .botao.errada { background: red; }
+        .btn-acao {
+            position: absolute;
+            bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 40px;
+            font-size: 20px;
+            background: #FFD700;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 20;
+        }
+        .tela-inicial {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .input-nome {
+            padding: 15px;
+            font-size: 18px;
+            width: 80%;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 10px;
+            border: 3px solid #FFD700;
+            background: #333;
+            color: white;
+        }
+        .times {
+            display: flex;
+            gap: 20px;
+            margin: 10px 0;
+        }
+        .btn-time {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .azul { background: blue; color: white; }
+        .vermelho { background: red; color: white; }
+        .lista {
+            background: #222;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            width: 80%;
+            text-align: left;
+        }
+        .btn-iniciar {
+            padding: 15px 50px;
+            font-size: 22px;
+            background: gray;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .btn-iniciar.ativo {
+            background: yellow;
+            color: black;
+            animation: pulsar 1s infinite;
+            cursor: pointer;
+        }
+        @keyframes pulsar {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+<div class="campo">
+    <div class="linha-meio"></div>
+    <div class="circulo-meio"></div>
+    <div class="area esq"></div>
+    <div class="area dir"></div>
+    <div class="gol-texto" id="golTexto">GOOOOLL!!!</div>
+    <div class="jogador" id="jogador">
+        <div class="cabeca"></div>
+        <div class="corpo"></div>
+        <div class="braco esq"></div>
+        <div class="braco dir"></div>
+        <div class="perna esq"></div>
+        <div class="perna dir"></div>
+    </div>
+    <div class="goleiro">
+        <div class="cabeca"></div>
+        <div class="corpo" style="background: #fff;"></div>
+        <div class="braco esq"></div>
+        <div class="braco dir"></div>
+    </div>
+    <div class="trave"></div>
+    <div class="bola" id="bola"></div>
+    <div class="painel">
+        <h1>⚽ COPA DA HIGIENE - CCIH 🧼</h1>
+        <div class="placar">
+            <div>🔵 AZUL: <span id="ptsAzul">0</span></div>
+            <div>⏱️ <span id="timer">00:00</span></div>
+            <div>🔴 VERMELHO: <span id="ptsVerm">0</span></div>
+        </div>
+    </div>
+    <div class="caixa-pergunta" id="caixaPergunta">
+        <h2 id="textoPergunta">Clique em "Sortear" para começar!</h2>
+    </div>
+    <div class="botoes-resposta" id="botoesResposta"></div>
+    <button class="btn-acao" id="btnSortear">🎲 SORTEAR PERGUNTA</button>
+    <div class="tela-inicial" id="telaInicial">
+        <h2>⚽ BEM-VINDO! 🧼</h2>
+        <p>Digite seu nome e escolha seu time:</p>
+        <input type="text" id="inputNome" class="input-nome" placeholder="Seu nome aqui..." maxlength="15">
+        <div class="times">
+            <button class="btn-time azul" id="btnAzul">🔵 TIME AZUL</button>
+            <button class="btn-time vermelho" id="btnVermelho">🔴 TIME VERMELHO</button>
+        </div>
+        <div class="lista">
+            <strong>🔵 Jogadores Azul:</strong>
+            <p id="listaAzul">-</p>
+        </div>
+        <div class="lista">
+            <strong>🔴 Jogadores Vermelho:</strong>
+            <p id="listaVermelho">-</p>
+        </div>
+        <button class="btn-iniciar" id="btnIniciar" disabled>⏳ AGUARDANDO...</button>
+    </div>
+</div>
+
+<script>
+const perguntas = [
+    { pergunta: "Qual a forma correta de higienizar as mãos?", opcoes: ["Apenas água", "Água e sabão ou álcool em gel", "Apenas papel toalha", "Não precisa lavar"], correta: 1 },
+    { pergunta: "Quanto tempo dura a higienização correta das mãos?", opcoes: ["20 a 30 segundos", "Apenas 5 segundos", "5 minutos", "10 segundos"], correta: 0 },
+    { pergunta: "O que NÃO se deve fazer em ambiente hospitalar?", opcoes: ["Usar jaleco", "Andar com chinelo", "Usar crachá", "Higienizar mãos"], correta: 1 },
+    { pergunta: "Qual a principal via de transmissão de infecções?", opcoes: ["Pelo ar apenas", "Pelos objetos apenas", "Pelas mãos e contato", "Pela água da torneira"], correta: 2 },
+    { pergunta: "Quando devemos higienizar as mãos?", opcoes: ["Apenas antes de comer", "Antes e após contato com paciente", "Apenas quando estiverem sujas", "Nunca"], correta: 1 },
+    { pergunta: "Qual a finalidade da higienização das mãos?", opcoes: ["Deixar as mãos cheirosas", "Apenas para limpar sujeira visível", "Prevenir infecções e eliminar microrganismos", "Não tem finalidade importante"], correta: 2 },
+    { pergunta: "O álcool em gel é eficaz contra qual destes?", opcoes: ["Apenas sujeira grossa", "Bactérias e vírus", "Apenas gordura", "Nada"], correta: 1 },
+    { pergunta: "O que é o 'Cinco Momentos' da higienização?", opcoes: ["Os 5 horários do dia", "Os 5 tipos de sabão", "Os momentos certinhos para higienizar", "Os 5 minutos de lavagem"], correta: 2 }
+];
+
+let jogadoresAzul = [];
+let jogadoresVermelho = [];
+let placarAzul = 0;
+let placarVermelho = 0;
+let perguntaAtual;
+let respondido = false;
+
+const btnAzul = document.getElementById('btnAzul');
+const btnVermelho = document.getElementById('btnVermelho');
+const btnIniciar = document.getElementById('btnIniciar');
+const btnSortear = document.getElementById('btnSortear');
